@@ -1,5 +1,6 @@
 package hr.zcuris.japanarery.japanarery.controller;
 
+import hr.zcuris.japanarery.japanarery.dto.ActivityStatsDTO;
 import hr.zcuris.japanarery.japanarery.entity.Activity;
 import hr.zcuris.japanarery.japanarery.service.ActivityService;
 import hr.zcuris.japanarery.japanarery.service.CloudinaryService;
@@ -115,5 +116,13 @@ public class ActivityController {
         service.deleteActivity(id);
         log.info("DELETE /{} — activity deleted", id);
         return ResponseEntity.noContent().build();
+    }
+
+    //--- STATS
+
+    @GetMapping("/stats")
+    public ResponseEntity<ActivityStatsDTO> getStats() {
+        log.info("GET /stats — fetching activity statistics");
+        return ResponseEntity.ok(service.getStats());
     }
 }
